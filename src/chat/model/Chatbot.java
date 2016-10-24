@@ -22,16 +22,54 @@ public class Chatbot
 	{
 		this.memesList = new ArrayList<String>();
 		this.userName = new String(userName);
-		this.content = new String("bhj hju v,");
+		this.content = new String("Thai food");
 		this.politicalTopicList = new ArrayList<String>();
+		buildPoliticalTopicsList();
+		buildMemesList();
 	}
 
 	private void buildMemesList()
 	{
+		memesList.add("doge");
+		memesList.add("cat");
+		memesList.add("dat boi");
+		memesList.add("willy wonka");
+		memesList.add("harambe");
+		memesList.add("john cena");
+		memesList.add("cute animals");
+		memesList.add("grumpy cat");
+		memesList.add("dog");
+		memesList.add("meme");
+		memesList.add("memes");
+		memesList.add("food");
+		memesList.add("juan");
+		memesList.add("sponge bob");
+		memesList.add("panda");
+		memesList.add("Twenty one");
+		memesList.add("gorilla");
+		memesList.add("soviet russia");
 	}
 
 	private void buildPoliticalTopicsList()
 	{
+		politicalTopicList.add("Trump");
+		politicalTopicList.add("Hillary");
+		politicalTopicList.add("Donald");
+		politicalTopicList.add("Clinton");
+		politicalTopicList.add("Political");
+		politicalTopicList.add("President");
+		politicalTopicList.add("presidental");
+		politicalTopicList.add("Debate");
+		politicalTopicList.add("Demicrats");
+		politicalTopicList.add("Republicans");
+		politicalTopicList.add("liberal");
+		politicalTopicList.add("libertarian");
+		politicalTopicList.add("Government");
+		politicalTopicList.add("China");
+		politicalTopicList.add("Putin");
+		politicalTopicList.add("Mexico");
+		politicalTopicList.add("wall");
+		politicalTopicList.add("Deleted emails");
 	}
 
 	/**
