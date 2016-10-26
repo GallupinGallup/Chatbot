@@ -80,7 +80,7 @@ public class Chatbot
 	public boolean lengthChecker(String currentInput)
 	{
 		boolean hasLength = false;
-		
+
 		if (currentInput != null && currentInput.length() > 0)
 		{
 			hasLength = true;
@@ -98,7 +98,12 @@ public class Chatbot
 	 */
 	public boolean contentChecker(String currentInput)
 	{
-		return false;
+		boolean contentChecker = false;
+		if (currentInput != null && currentInput.contains(content))
+		{
+			contentChecker = true;
+		}
+		return contentChecker;
 	}
 
 	/**
@@ -112,7 +117,15 @@ public class Chatbot
 	 */
 	public boolean politicalTopicChecker(String currentInput)
 	{
-		return false;
+		boolean politicalTopicChecker = false;
+		for(int posistion = 0; posistion < politicalTopicList.size(); posistion ++)
+		{
+		if (currentInput != null && currentInput.equalsIgnoreCase(politicalTopicList.get(posistion)))
+		{
+			politicalTopicChecker = true;
+		}
+		}
+		return politicalTopicChecker;
 	}
 
 	/**
@@ -125,7 +138,15 @@ public class Chatbot
 	 */
 	public boolean memeChecker(String currentInput)
 	{
-		return false;
+		boolean memeChecker = false;
+		for(int posistion = 0; posistion < memesList.size(); posistion ++)
+		{
+		if (currentInput != null && currentInput.equalsIgnoreCase(memesList.get(posistion)))
+		{
+			memeChecker = true;
+		}
+		}
+		return memeChecker;
 	}
 
 	/**
@@ -170,6 +191,7 @@ public class Chatbot
 	 */
 	public void setContent(String content)
 	{
+		this.content = content;
 	}
 
 }

@@ -25,6 +25,6 @@ public class ChatViewer
 	
 	public void displayMessage(String Message)
 	{
-		
+		JOptionPane.showMessageDialog(null, Message);
 	}
 }
