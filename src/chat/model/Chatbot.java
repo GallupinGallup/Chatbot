@@ -148,6 +148,27 @@ public class Chatbot
 		}
 		return memeChecker;
 	}
+	
+	public boolean inputHTMLChecker(String input)
+	{
+		String trimmed = input.replaceAll(" ", "");
+		boolean htmlBool = false;
+		if((trimmed.startsWith("<") && trimmed.contains(">")) && (trimmed.length() > 2 && !input.contains("  ") && trimmed.contains("><")))
+		{
+			htmlBool = true;
+		}
+		
+		
+		return htmlBool;
+	}
+	public boolean twitterChecker(String input)
+	{
+		boolean twitterBool = false;
+		
+		
+		
+		return twitterBool;
+	}
 
 	/**
 	 * * Returns the username of this Chatbot instance. * @return The username
@@ -192,6 +213,18 @@ public class Chatbot
 	public void setContent(String content)
 	{
 		this.content = content;
+	}
+
+	public boolean quitChecker(String string)
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean keyboardMashChecker(String string)
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

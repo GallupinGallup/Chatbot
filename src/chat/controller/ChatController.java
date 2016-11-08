@@ -3,12 +3,12 @@ package chat.controller;
 import chat.view.ChatViewer;
 import chat.model.Chatbot;
 
-public class ChatbotController
+public class ChatController
 {
 	private Chatbot stupidBot;
 	private ChatViewer chatView;
 
-	public ChatbotController()
+	public ChatController()
 	{
 		stupidBot = new Chatbot("GallupinGallup");
 		chatView = new ChatViewer();
@@ -48,5 +48,17 @@ public class ChatbotController
 		
 		
 		return answer;
+	}
+
+	public Object getBaseFrame()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Chatbot getChatbot()
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
