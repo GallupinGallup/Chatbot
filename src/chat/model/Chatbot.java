@@ -38,7 +38,6 @@ public class Chatbot
 		memesList.add("john cena");
 		memesList.add("cute animals");
 		memesList.add("grumpy cat");
-		memesList.add("dog");
 		memesList.add("meme");
 		memesList.add("memes");
 		memesList.add("food");
@@ -48,6 +47,7 @@ public class Chatbot
 		memesList.add("Twenty one");
 		memesList.add("gorilla");
 		memesList.add("soviet russia");
+		memesList.add("chuck noris");
 	}
 
 	private void buildPoliticalTopicsList()
@@ -60,8 +60,8 @@ public class Chatbot
 		politicalTopicList.add("President");
 		politicalTopicList.add("presidental");
 		politicalTopicList.add("Debate");
-		politicalTopicList.add("Demicrats");
-		politicalTopicList.add("Republicans");
+		politicalTopicList.add("Democrat");
+		politicalTopicList.add("Republican");
 		politicalTopicList.add("liberal");
 		politicalTopicList.add("libertarian");
 		politicalTopicList.add("Government");
@@ -70,6 +70,13 @@ public class Chatbot
 		politicalTopicList.add("Mexico");
 		politicalTopicList.add("wall");
 		politicalTopicList.add("Deleted emails");
+		politicalTopicList.add("11/8/16");
+		politicalTopicList.add("conservative");
+		politicalTopicList.add("Kaine");
+		politicalTopicList.add("Pence");
+		politicalTopicList.add("Stein");
+		politicalTopicList.add("Johnson");
+		politicalTopicList.add("election");
 	}
 
 	/**
@@ -120,10 +127,10 @@ public class Chatbot
 		boolean politicalTopicChecker = false;
 		for(int posistion = 0; posistion < politicalTopicList.size(); posistion ++)
 		{
-		if (currentInput != null && currentInput.equalsIgnoreCase(politicalTopicList.get(posistion)))
-		{
-			politicalTopicChecker = true;
-		}
+			if (currentInput != null && currentInput.equals(politicalTopicList.get(posistion)))
+			{
+				politicalTopicChecker = true;
+			}
 		}
 		return politicalTopicChecker;
 	}
@@ -152,8 +159,11 @@ public class Chatbot
 	public boolean inputHTMLChecker(String input)
 	{
 		String trimmed = input.replaceAll(" ", "");
+		
 		boolean htmlBool = false;
-		if((trimmed.startsWith("<") && trimmed.contains(">")) && (trimmed.length() > 2 && !input.contains("  ") && trimmed.contains("><")))
+		if((trimmed.startsWith("<") && trimmed.contains(">")) && 
+				(trimmed.length() > 2 && !input.endsWith("  ") &&
+						!input.endsWith("F> </a>")))
 		{
 			htmlBool = true;
 		}
@@ -164,7 +174,11 @@ public class Chatbot
 	public boolean twitterChecker(String input)
 	{
 		boolean twitterBool = false;
-		
+		String trimmed = input.replaceAll(" ", "");
+		if(trimmed.length() >1 && !input.startsWith(" "))
+		{
+			twitterBool = true;
+		}
 		
 		
 		return twitterBool;
@@ -215,16 +229,26 @@ public class Chatbot
 		this.content = content;
 	}
 
-	public boolean quitChecker(String string)
+	public boolean quitChecker(String input)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		boolean quitBool = false;
+		if(input.equalsIgnoreCase("quit"))
+		{
+			quitBool = true;
+		}
+		return quitBool;
 	}
 
-	public boolean keyboardMashChecker(String string)
+	public boolean keyboardMashChecker(String input)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		boolean keyboardMashBool = false;
+		if(!input.contains("S.D.F") || input.contains("sdf") 
+				|| input.contains("dfg") || input.contains("cvb") 
+				|| input.contains(",./") || !input.equals("derf"))
+		{
+			keyboardMashBool = true;
+		}
+		return keyboardMashBool;
 	}
 
 }
