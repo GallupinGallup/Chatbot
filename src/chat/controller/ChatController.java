@@ -1,31 +1,36 @@
 package chat.controller;
 
-import chat.view.ChatViewer;
 import chat.model.Chatbot;
+import chat.view.ChatFrame;
 
 public class ChatController
 {
 	private Chatbot stupidBot;
-	private ChatViewer chatView;
+	//private ChatViewer chatView;
+	private ChatFrame baseFrame;
 
-	public ChatController()
+ 	public ChatController()
 	{
 		stupidBot = new Chatbot("GallupinGallup");
-		chatView = new ChatViewer();
+		//chatView = new ChatViewer();
+		baseFrame = new ChatFrame(this);
 	}
 
 	public void start()
 	{
-		String response = chatView.collectResponse("What do you want to talk about today????");
+		/*
+		 * String response = chatView.collectResponse("What do you want to talk about today????");
 		
 		while(stupidBot.lengthChecker(response))
 		{
 			chatView.displayMessage(useChatbotCheckers(response));
 			response = chatView.collectResponse("Oh, you are intrested in " + response);
 		}
+		 */
 		
 	}
-	private String useChatbotCheckers(String input)
+	
+	public String useChatbotCheckers(String input)
 	{
 		String answer = "";
 		
@@ -41,7 +46,7 @@ public class ChatController
 		{
 			answer += "\nPoop politics\n";
 		}
-		if(answer.length() == 0)
+		if(stupidBot.lengthChecker(answer))
 		{
 			answer += "Sorry, I don't know about " + input;
 		}
@@ -53,12 +58,13 @@ public class ChatController
 	public Object getBaseFrame()
 	{
 		// TODO Auto-generated method stub
-		return null;
+		return baseFrame;
 	}
 
 	public Chatbot getChatbot()
 	{
 		// TODO Auto-generated method stub
-		return null;
+		return stupidBot;
 	}
+	
 }

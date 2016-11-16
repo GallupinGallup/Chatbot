@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * Students will complete methods as part * of the project. * @author Tyler
  * Tyler Gallup * @version 1.0 10/14/16
  */
+
 public class Chatbot
 { 
 	private ArrayList<String> memesList;
@@ -18,10 +19,11 @@ public class Chatbot
 	 * * Creates an instance of the Chatbot with the supplied username. * @param
 	 * userName The username for the chatbot.
 	 */
+	
 	public Chatbot(String userName)
 	{
 		this.memesList = new ArrayList<String>();
-		this.userName = new String(userName);
+		this.userName = userName;
 		this.content = new String("Thai food");
 		this.politicalTopicList = new ArrayList<String>();
 		buildPoliticalTopicsList();
@@ -84,6 +86,7 @@ public class Chatbot
 	 * String is empty or null, otherwise returns true. * @param currentInput * @return
 	 * A true or false based on the length of the supplied String.
 	 */
+	
 	public boolean lengthChecker(String currentInput)
 	{
 		boolean hasLength = false;
@@ -103,6 +106,7 @@ public class Chatbot
 	 *            The supplied String to be checked. * @return Whether it
 	 *            matches the content area.
 	 */
+	
 	public boolean contentChecker(String currentInput)
 	{
 		boolean contentChecker = false;
@@ -122,6 +126,7 @@ public class Chatbot
 	 *            The supplied String to be checked. * @return Whether the
 	 *            String is contained in the ArrayList.
 	 */
+	
 	public boolean politicalTopicChecker(String currentInput)
 	{
 		boolean politicalTopicChecker = false;
@@ -143,6 +148,7 @@ public class Chatbot
 	 *            The supplied String to be checked. * @return Whether the
 	 *            supplied String is a recognized meme.
 	 */
+	
 	public boolean memeChecker(String currentInput)
 	{
 		boolean memeChecker = false;
@@ -171,6 +177,7 @@ public class Chatbot
 		
 		return htmlBool;
 	}
+	
 	public boolean twitterChecker(String input)
 	{
 		boolean twitterBool = false;
@@ -188,6 +195,7 @@ public class Chatbot
 	 * * Returns the username of this Chatbot instance. * @return The username
 	 * of the Chatbot.
 	 */
+	
 	public String getUserName()
 	{
 		return userName;
@@ -197,6 +205,7 @@ public class Chatbot
 	 * * Returns the content area for this Chatbot instance. * @return The
 	 * content area for this Chatbot instance.
 	 */
+	
 	public String getContent()
 	{
 		return content;
@@ -206,6 +215,7 @@ public class Chatbot
 	 * * Getter method for the memesList object. * @return The reference to the
 	 * meme list.
 	 */
+	
 	public ArrayList<String> getMemesList()
 	{
 		return memesList;
@@ -215,6 +225,7 @@ public class Chatbot
 	 * * Getter method for the politicalTopicList object. * @return The
 	 * reference to the political topic list.
 	 */
+	
 	public ArrayList<String> getPoliticalTopicList()
 	{
 		return politicalTopicList;
@@ -224,6 +235,7 @@ public class Chatbot
 	 * * Updates the content area for this Chatbot instance. * @param content
 	 * The updated value for the content area.
 	 */
+	
 	public void setContent(String content)
 	{
 		this.content = content;
@@ -242,9 +254,8 @@ public class Chatbot
 	public boolean keyboardMashChecker(String input)
 	{
 		boolean keyboardMashBool = false;
-		if(!input.contains("S.D.F") || input.contains("sdf") 
-				|| input.contains("dfg") || input.contains("cvb") 
-				|| input.contains(",./") || !input.equals("derf"))
+		if((input.contains("sdf") || input.contains("dfg") 
+				|| input.contains("cvb") || input.contains(",./")))
 		{
 			keyboardMashBool = true;
 		}
