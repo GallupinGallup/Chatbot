@@ -64,7 +64,42 @@ public class ChatController
 		}
 		return answer;
 	}
-
+	
+	private String randomTopicGenerator()
+	{
+		String randomTopic = "";
+		int random = (int)(Math.random() *7);
+		
+		switch (random)
+		{
+		case 0:
+			randomTopic = "Have you herd about that awesome kid named Tyler Gallup";
+			break;
+		case 1:
+			randomTopic = "Can you bring me some horchata";
+			break;
+		case 2:
+			randomTopic = "Megusta comida";
+			break;
+		case 3:
+			randomTopic = "Como estas?";
+			break;
+		case 4:
+			randomTopic = "Tu mentiri anguis";
+			break;
+		case 5:
+			randomTopic = "obtrucabotu";
+			break;
+		case 6:
+			randomTopic = "tu eres una burro";
+			break;
+		default:
+			randomTopic = "tu eres gorto";
+			break;
+		
+		}
+		return randomTopic;
+	}
 	public Object getBaseFrame()
 	{
 		// TODO Auto-generated method stub

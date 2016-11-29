@@ -29,6 +29,9 @@ public class Chatbot
 		buildPoliticalTopicsList();
 		buildMemesList();
 	}
+	/**
+	 * Adds a list of memes so that the chatbot will know when people are talking about memes.
+	 */
 
 	private void buildMemesList()
 	{
@@ -51,7 +54,9 @@ public class Chatbot
 		memesList.add("soviet russia");
 		memesList.add("chuck noris");
 	}
-
+	/**
+	 * Adds a list of Political words so that the chatbot will know when people are talking about Political stuff.
+	 */
 	private void buildPoliticalTopicsList()
 	{
 		politicalTopicList.add("Trump");
@@ -162,12 +167,17 @@ public class Chatbot
 		return memeChecker;
 	}
 	
+	/**
+	 * Checks to see if someone put in an HTML.
+	 */
 	public boolean inputHTMLChecker(String input)
 	{
 		String trimmed = input.replaceAll(" ", "");
 		
 		boolean htmlBool = false;
-		if((trimmed.startsWith("<") && trimmed.contains(">")) && 
+		
+		if((input.equals("<p>") ||
+				trimmed.contains("<" +  + "<") && trimmed.contains(">" + ">")) &&
 				(trimmed.length() > 2 && !input.endsWith("  ") &&
 						!input.endsWith("F> </a>")))
 		{
@@ -178,6 +188,9 @@ public class Chatbot
 		return htmlBool;
 	}
 	
+	/**
+	 * Checks to see if someone put in a hastag from twitter.
+	 */
 	public boolean twitterChecker(String input)
 	{
 		boolean twitterBool = false;
