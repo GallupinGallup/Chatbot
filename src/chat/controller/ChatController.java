@@ -2,17 +2,18 @@ package chat.controller;
 
 import chat.model.Chatbot;
 import chat.view.ChatFrame;
+import chat.view.ChatViewer;
 
 public class ChatController
 {
 	private Chatbot stupidBot;
-	// private ChatViewer chatView;
+	private ChatViewer chatView;
 	private ChatFrame baseFrame;
 
 	public ChatController()
 	{
 		stupidBot = new Chatbot("GallupinGallup");
-		// chatView = new ChatViewer();
+		chatView = new ChatViewer();
 		baseFrame = new ChatFrame(this);
 	}
 
@@ -59,7 +60,7 @@ public class ChatController
 			}
 		} else
 		{
-			chatView.display.displayMessage("Thank you for chatting with me :D");
+			chatView.displayMessage("Thank you for chatting with me :D");
 			System.exit(0);
 		}
 		return answer;

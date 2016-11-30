@@ -31,7 +31,6 @@ public class ChatPanel extends JPanel
 		chatDisplay = new JTextArea(5, 25);
 		chatField = new JTextField(25);
 		chatButton = new JButton("Chat with the bot");
-		baseLayout.putConstraint(SpringLayout.SOUTH, chatButton, -71, SpringLayout.NORTH, chatField);
 		imageLabel = new JLabel(new ImageIcon(getClass().getResource("images/chatbot.png")));
 		
 		setupChatDisplay();
@@ -65,6 +64,7 @@ public class ChatPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, chatField, 68, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, chatField, -47, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, chatButton, 148, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatButton, -71, SpringLayout.NORTH, chatField);
 	}
 
 	private void setupListeners()

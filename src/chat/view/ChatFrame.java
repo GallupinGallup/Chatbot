@@ -25,4 +25,8 @@ public class ChatFrame extends JFrame
 		this.setTitle("such memes");
 		this.setVisible(true);
 	}
+	public ChatPanel getAppPanel()
+	{
+		return appPanel;
+	}
 }
