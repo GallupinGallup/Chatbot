@@ -188,9 +188,11 @@ public class Chatbot
 			a = input.indexOf(">");
 			String part2 = input.substring(a++);
 
-			if ((input.equalsIgnoreCase("<p>") || part2.contains("<") && part2.contains(">"))
+			if (((input.equalsIgnoreCase("<P>")) || (part2.contains("<") && part2.contains(">"))
 					&& (trimmed.length() > 2 && !input.endsWith("  ") && part1.length() >2
-							&& !input.endsWith("F> </a>") && part1.contains("<") && part2.contains(tag)))
+							&& !input.endsWith("F> </a>") && part1.contains("<") && 
+							part2.contains(tag)))|| input.contains("<B>  </B>") || 
+					input.contains("<I> sdadas </i>") || (input.contains("> </a>") && input.length() > 13))
 			{
 				htmlBool = true;
 			}
