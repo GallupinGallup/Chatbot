@@ -4,90 +4,81 @@ import java.util.ArrayList;
 
 /**
  * Base version of the 2015 Chatbot class. Only stub methods are provided.
- * Students will complete methods as part * of the project. * @author Tyler
- * Tyler Gallup * @version 1.0 10/14/16
+ * Students will complete methods as part * of the project. * 
+ * @author Arick Smith
+ * @version 1.0 10/14/15
  */
-
-public class Chatbot
+public class Chatbot 
 {
 	private ArrayList<String> memesList;
 	private ArrayList<String> politicalTopicList;
 	private String userName;
 	private String content;
+	
 
 	/**
 	 * * Creates an instance of the Chatbot with the supplied username. * @param
 	 * userName The username for the chatbot.
 	 */
-
-	public Chatbot(String userName)
+	public Chatbot(String userName) 
 	{
 		this.memesList = new ArrayList<String>();
-		this.userName = userName;
-		this.content = new String("Thai food");
 		this.politicalTopicList = new ArrayList<String>();
+		this.userName = userName;
+		this.content = new String("itallian");
+		this.buildMemesList();
 		buildPoliticalTopicsList();
-		buildMemesList();
+		
+		
+		
 	}
+	
+	
 
-	/**
-	 * Adds a list of memes so that the chatbot will know when people are
-	 * talking about memes.
-	 */
-
-	private void buildMemesList()
+	private void buildMemesList() 
 	{
+		memesList.add("john cena");
 		memesList.add("doge");
-		memesList.add("cat");
+		memesList.add("cute animals");
+		memesList.add("grumpy cat");
 		memesList.add("dat boi");
 		memesList.add("willy wonka");
 		memesList.add("harambe");
-		memesList.add("john cena");
-		memesList.add("cute animals");
-		memesList.add("grumpy cat");
-		memesList.add("meme");
-		memesList.add("memes");
-		memesList.add("food");
-		memesList.add("juan");
-		memesList.add("sponge bob");
-		memesList.add("panda");
-		memesList.add("Twenty one");
-		memesList.add("gorilla");
-		memesList.add("soviet russia");
-		memesList.add("chuck noris");
+		memesList.add("fresh avacado");
+		memesList.add("you're not really fine.");
+		memesList.add("stop it");
+		memesList.add("Rhon Swansen");
+		memesList.add("Batman");
+		memesList.add("clowns");
+		memesList.add("spongebob");
+		memesList.add("cat");
+		memesList.add("21");
+		memesList.add("Office");
+		memesList.add("doctor");
+		
 	}
 
-	/**
-	 * Adds a list of Political words so that the chatbot will know when people
-	 * are talking about Political stuff.
-	 */
-	private void buildPoliticalTopicsList()
+	private void buildPoliticalTopicsList() 
 	{
-		politicalTopicList.add("Trump");
-		politicalTopicList.add("Hillary");
-		politicalTopicList.add("Donald");
-		politicalTopicList.add("Clinton");
-		politicalTopicList.add("Political");
-		politicalTopicList.add("President");
-		politicalTopicList.add("presidental");
-		politicalTopicList.add("Debate");
 		politicalTopicList.add("Democrat");
 		politicalTopicList.add("Republican");
-		politicalTopicList.add("liberal");
-		politicalTopicList.add("libertarian");
-		politicalTopicList.add("Government");
-		politicalTopicList.add("China");
-		politicalTopicList.add("Putin");
-		politicalTopicList.add("Mexico");
-		politicalTopicList.add("wall");
-		politicalTopicList.add("Deleted emails");
 		politicalTopicList.add("11/8/16");
 		politicalTopicList.add("conservative");
+		politicalTopicList.add("Clinton");
+		politicalTopicList.add("liberal");
+		politicalTopicList.add("Trump");
 		politicalTopicList.add("Kaine");
 		politicalTopicList.add("Pence");
 		politicalTopicList.add("Stein");
 		politicalTopicList.add("Johnson");
 		politicalTopicList.add("election");
+		politicalTopicList.add("Trump wall");
+		politicalTopicList.add("deleted emails");
+		politicalTopicList.add("Foreign Policy");
+		politicalTopicList.add("Free trade");
+		politicalTopicList.add("War & Peace");
+		politicalTopicList.add("Gun control");
+		politicalTopicList.add("Hillary");
 	}
 
 	/**
@@ -95,15 +86,15 @@ public class Chatbot
 	 * String is empty or null, otherwise returns true. * @param currentInput * @return
 	 * A true or false based on the length of the supplied String.
 	 */
-
 	public boolean lengthChecker(String currentInput)
 	{
 		boolean hasLength = false;
-
-		if (currentInput != null && currentInput.length() > 0)
+		
+		if(currentInput != null && currentInput.length() > 0)
 		{
 			hasLength = true;
 		}
+		
 		return hasLength;
 	}
 
@@ -115,15 +106,18 @@ public class Chatbot
 	 *            The supplied String to be checked. * @return Whether it
 	 *            matches the content area.
 	 */
-
-	public boolean contentChecker(String currentInput)
+	public boolean contentChecker(String currentInput) 
 	{
-		boolean contentChecker = false;
-		if (currentInput != null && currentInput.contains(content))
+		boolean hasContent = false;
+		
+		
+		
+		if (currentInput != null && currentInput.toLowerCase().contains(content.toLowerCase()))
 		{
-			contentChecker = true;
+			hasContent = true;
 		}
-		return contentChecker;
+		
+		return hasContent;
 	}
 
 	/**
@@ -135,18 +129,19 @@ public class Chatbot
 	 *            The supplied String to be checked. * @return Whether the
 	 *            String is contained in the ArrayList.
 	 */
-
 	public boolean politicalTopicChecker(String currentInput)
 	{
-		boolean politicalTopicChecker = false;
-		for (int posistion = 0; posistion < politicalTopicList.size(); posistion++)
+		boolean hasPolitical = false;
+		
+		for (int index = 0; index < politicalTopicList.size(); index++)
 		{
-			if (currentInput != null && currentInput.equals(politicalTopicList.get(posistion)))
+			if (currentInput != null && currentInput.equals(politicalTopicList.get(index)))
 			{
-				politicalTopicChecker = true;
+				hasPolitical = true;
 			}
 		}
-		return politicalTopicChecker;
+		
+		return hasPolitical;
 	}
 
 	/**
@@ -157,71 +152,100 @@ public class Chatbot
 	 *            The supplied String to be checked. * @return Whether the
 	 *            supplied String is a recognized meme.
 	 */
-
 	public boolean memeChecker(String currentInput)
 	{
-		boolean memeChecker = false;
-		for (int posistion = 0; posistion < memesList.size(); posistion++)
+		boolean hasMeme = false;
+		
+		for (int position = 0; position < memesList.size(); position++)
 		{
-			if (currentInput != null && currentInput.equalsIgnoreCase(memesList.get(posistion)))
+			if (currentInput != null && currentInput.equalsIgnoreCase(memesList.get(position)))
 			{
-				memeChecker = true;
+				hasMeme = true;
 			}
 		}
-		return memeChecker;
+		
+		return hasMeme;
+	}
+	
+	
+	public boolean quitChecker(String currentInput)
+	{
+		boolean didQuit = false;
+		if (currentInput != null && !currentInput.equalsIgnoreCase("exit") && currentInput.equalsIgnoreCase("Quit"))
+		{
+			didQuit = true;
+		}
+		
+		return didQuit;
 	}
 
-	/**
-	 * Checks to see if someone put in an HTML.
-	 */
-	public boolean inputHTMLChecker(String input)
+	
+	public boolean keyboardMashChecker(String currentInput)
 	{
-		boolean htmlBool = false;
-		String part1;
-		int a = input.indexOf(">");
-		int c = input.indexOf("<");
-		String tag = input.substring(c, a);
-		if (a >= 0)
+		boolean didMash = false;
+		if (currentInput != null && currentInput.equals("sdf") || currentInput.equals("dfg") || currentInput.equals("cvb") || currentInput.equals(",./"))
 		{
-			String trimmed = input.replaceAll(" ", "");
-			part1 = input.substring(0, a++);
-			a = input.indexOf(">");
-			String part2 = input.substring(a++);
-
-			if (((input.equalsIgnoreCase("<P>")) || (part2.contains("<") && part2.contains(">"))
-					&& (trimmed.length() > 2 && !input.endsWith("  ") && part1.length() >2
-							&& !input.endsWith("F> </a>") && part1.contains("<") && 
-							part2.contains(tag)))|| input.contains("<B>  </B>") || 
-					input.contains("<I> sdadas </i>") || (input.contains("> </a>") && input.length() > 13))
+			didMash = true;
+		}
+		return didMash;
+	}
+	
+	public boolean inputHTMLChecker(String currentInput) 
+	{
+		boolean inHTML = false;
+		
+		if(currentInput != null)
+		{
+			
+			
+			int matched = currentInput.indexOf("<");
+			int closedMatch = currentInput.indexOf(">");
+			if(matched >= 0)
 			{
-				htmlBool = true;
+				String innards = currentInput.substring(matched + 1, closedMatch).toUpperCase();
+				String begining = ("<");
+				String end = (">");
+			
+				
+				
+			
+			 if (currentInput.indexOf("<", closedMatch) > 0 && currentInput.indexOf(">", closedMatch) > 0 && currentInput.length() > 2
+					 && currentInput.toUpperCase().contains(innards) && currentInput.toUpperCase().contains("/" + innards) 
+					 || currentInput.toUpperCase().contains("<P>") || currentInput.toUpperCase().contains("A HREF=\"") && currentInput.toUpperCase().contains("</A>"))
+					       
+			{
+				if ((currentInput.toUpperCase().substring(closedMatch + 1).contains(begining)) && currentInput.toUpperCase().substring(closedMatch + 1).contains(end) 
+						 || currentInput.contains("<P>") || currentInput.contains("A HREF=\""))            
+				{
+					inHTML =true;
+				}
+					
+					
 			}
+		
+			}
+					
 		}
-
-		return htmlBool;
+		
+		return inHTML;
 	}
-
-	/**
-	 * Checks to see if someone put in a hastag from twitter.
-	 */
-	public boolean twitterChecker(String input)
+	
+	public boolean twitterChecker(String currentInput)
 	{
-		boolean twitterBool = false;
-		String trimmed = input.replaceAll(" ", "");
-		if (trimmed.length() > 1 && !input.startsWith(" "))
+		boolean inTwitter = false;
+		
+		if (currentInput.startsWith("#") || currentInput.startsWith("@") && !currentInput.equals(" "))
 		{
-			twitterBool = true;
+			inTwitter = true;
 		}
-
-		return twitterBool;
+		
+		return inTwitter;
 	}
-
 	/**
 	 * * Returns the username of this Chatbot instance. * @return The username
 	 * of the Chatbot.
 	 */
-
-	public String getUserName()
+	public String getUserName() 
 	{
 		return userName;
 	}
@@ -230,7 +254,6 @@ public class Chatbot
 	 * * Returns the content area for this Chatbot instance. * @return The
 	 * content area for this Chatbot instance.
 	 */
-
 	public String getContent()
 	{
 		return content;
@@ -240,8 +263,7 @@ public class Chatbot
 	 * * Getter method for the memesList object. * @return The reference to the
 	 * meme list.
 	 */
-
-	public ArrayList<String> getMemesList()
+	public ArrayList<String> getMemesList() 
 	{
 		return memesList;
 	}
@@ -250,8 +272,7 @@ public class Chatbot
 	 * * Getter method for the politicalTopicList object. * @return The
 	 * reference to the political topic list.
 	 */
-
-	public ArrayList<String> getPoliticalTopicList()
+	public ArrayList<String> getPoliticalTopicList() 
 	{
 		return politicalTopicList;
 	}
@@ -260,30 +281,17 @@ public class Chatbot
 	 * * Updates the content area for this Chatbot instance. * @param content
 	 * The updated value for the content area.
 	 */
-
-	public void setContent(String content)
+	public void setContent(String content) 
 	{
-		this.content = content;
+	 this.content = content;
 	}
-
-	public boolean quitChecker(String input)
+	/**
+	 * * Updates the username of the Chatbot instance. *@param userName
+	 * The updated value of the Chatbot username.
+	 */
+	public void setUserName(String userName)
 	{
-		boolean quitBool = false;
-		if (input.equalsIgnoreCase("quit"))
-		{
-			quitBool = true;
-		}
-		return quitBool;
-	}
-
-	public boolean keyboardMashChecker(String input)
-	{
-		boolean keyboardMashBool = false;
-		if ((input.contains("sdf") || input.contains("dfg") || input.contains("cvb") || input.contains(",./")))
-		{
-			keyboardMashBool = true;
-		}
-		return keyboardMashBool;
+		this.userName = userName;
 	}
 
 }
