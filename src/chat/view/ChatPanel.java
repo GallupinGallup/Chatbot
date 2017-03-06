@@ -1,18 +1,9 @@
 package chat.view;
-
+import chat.controller.ChatController;
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SpringLayout;
-
-import chat.controller.ChatController;
 
 public class ChatPanel extends JPanel
 {
@@ -21,63 +12,67 @@ public class ChatPanel extends JPanel
 	private JTextArea chatDisplay;
 	private JTextField chatField;
 	private JButton chatButton;
-	private JLabel imageLabel;
-
+	private JLabel chatLabel;
+	
 	public ChatPanel(ChatController baseController)
 	{
 		super();
 		this.baseController = baseController;
-		this.baseLayout = new SpringLayout();
+		baseLayout = new SpringLayout();
 		chatDisplay = new JTextArea(5, 25);
 		chatField = new JTextField(25);
-		chatButton = new JButton("Chat with the bot");
-		imageLabel = new JLabel(new ImageIcon(getClass().getResource("images/chatbot.png")));
-		
+		chatButton = new JButton("This one has words");
+		chatLabel = new JLabel("This also has words");
+	
 		setupChatDisplay();
 		setupPanel();
 		setupLayout();
 		setupListeners();
 	}
-
 	private void setupChatDisplay()
 	{
 		chatDisplay.setEditable(false);
+		chatDisplay.setEnabled(false);
 		chatDisplay.setLineWrap(true);
 		chatDisplay.setWrapStyleWord(true);
-		chatDisplay.setEnabled(false);
+		
+		
 	}
-
+	
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
-		this.setBackground(Color.GREEN);
+		this.setBackground(Color.GRAY);
 		this.add(chatDisplay);
 		this.add(chatButton);
 		this.add(chatField);
-		this.add(imageLabel);
+		this.add(chatLabel);
 	}
-
+	
 	private void setupLayout()
 	{
-		baseLayout.putConstraint(SpringLayout.WEST, chatDisplay, 75, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, chatDisplay, 27, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, chatField, 68, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, chatField, -47, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, chatButton, 148, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, chatButton, -71, SpringLayout.NORTH, chatField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatDisplay, -42, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, chatDisplay, -74, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, chatField, 63, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, chatButton, -136, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatField, -6, SpringLayout.NORTH, chatButton);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatButton, -32, SpringLayout.NORTH, chatDisplay);
+		baseLayout.putConstraint(SpringLayout.WEST, chatLabel, 162, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatLabel, -6, SpringLayout.NORTH, chatField);
+		
 	}
-
+	
 	private void setupListeners()
 	{
 		chatButton.addActionListener(new ActionListener()
 		{
-			@Override
-			public void actionPerformed(ActionEvent e)
+			public void actionPerformed (ActionEvent click)
 			{
 				String userWords = chatField.getText();
 				String botResponse = baseController.useChatbotCheckers(userWords);
+				
+				chatDisplay.setText("You said: " + userWords + "\n" + "Chatbot said: " + botResponse);
 				chatField.setText("");
-				chatDisplay.setText("yousaid: " + userWords + "\n" + "Chatbot said " + botResponse);
 			}
 		});
 	}
