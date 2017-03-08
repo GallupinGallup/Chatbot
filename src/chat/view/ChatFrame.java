@@ -19,7 +19,7 @@ public class ChatFrame extends JFrame
 		private void setupFrame()
 		{
 			this.setContentPane(basePanel);
-			this.setTitle("You got served sucker");
+			this.setTitle("This is a htaiosgjap;dshiuyopgjlnadfgs");
 			this.setSize(new Dimension(900, 900));
 			this.setResizable(true);
 			this.setVisible(true);

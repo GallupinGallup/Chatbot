@@ -1,25 +1,29 @@
 package chat.model;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import chat.controller.ChatController;
+import twitter4j.Paging;
+import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
-import java.util.List;
-import java.util.ArrayList;
-import twitter4j.Status;
 
 
 public class CTECTwitter 
 {
 	private ChatController baseController;
 	private Twitter twitterBot;
-	private List<Status> tweetedWords;
-	private List<String> ignoredWords;
+	private List<String> tweetedWords;
+	private List<Status> allTheTweets;
+
 	
 	public CTECTwitter(ChatController baseController)
 	{
 		this.baseController = baseController;
-		tweetedWords = new ArrayList<Status>();
-		ignoredWords = new ArrayList<String>();
+		tweetedWords = new ArrayList<String>();
+		allTheTweets = new ArrayList<Status>();
 		twitterBot = TwitterFactory.getSingleton();
 	}
 	
@@ -41,14 +45,27 @@ public class CTECTwitter
 	
 	private String [] createIgnoredWordsArray()
 	{
-		String [] ignoredWords = {"the" + "of" + "and" + "a" + "to" + "in" + "is" + "that" + "it" + "he" +  "was" + "you" + "for" + "on" + "are" + "as" + "with" +"his" +"they"+ "at"+ "be"+
-				"this"+ "have"+ "via"+ "from" +"or"+ "one"+ "had" +"by" +"but"+ "not"+ "what"+ "all" +"were" +"we"+ "RT" +"I" +"&" +"when" +"your" +"can" +"said" +"there"+
-				"use" +"an"+ "each"+ "which" +"she" +"do"+ "how" +"their"+ "if"+ "will" +"up" +"about"+ "out"+ "many"+ "then"+ "them"+ "these" +"so" +"some" +"her" +
-				"would"+ "make"	+"him"+	"into" +"has"+ "two" +"go"	+"see" +"no"+ "way" +"could" +"my" +"than"+ "been" +"who"	+"its" +"did" +"get"
-				+"may" +"Ö" +"@" +"??" +"Im" +"me"+ "u" +"just"+ "our"+ "like"};
+		String[] boringWords;
+		int wordCount = 0;
 		
+		Scanner boringWordScanner = new Scanner(this.getClass().getResourceAsStream("commonWords.txt"));
+		while(boringWordScanner.hasNextLine())
+		{
+			wordCount++;
+		}
+		boringWordScanner.close();
 		
-		return ignoredWords;
+		boringWords = new String[wordCount];
+		
+		boringWordScanner = new Scanner(this.getClass().getResourceAsStream("commonWords.txt"));
+		
+		for(int index = 0; index < boringWords.length; index++)
+		{
+			boringWords[index] = boringWordScanner.next();
+		}
+		boringWordScanner.close();
+		
+		return null;
 	}
 	
 	private void collectTweets(String userName)
@@ -58,16 +75,74 @@ public class CTECTwitter
 	
 	public String getMostPopularWord(String userName)
 	{
-		return "";
+		this.gatherTheTweets(userName);
+		this.turnTweetsToWords();
+		this.turnTweetsToWords();
+		this.removeBoringWords();
+		this.removeBlankWords();
+		
+		String information = "The tweetcount is " + allTheTweets.size() + "and the word count after removal is " + tweetedWords.size();
+		
+		return information;
 	}
 	
 	private void removeBoringWords()
 	{
-		for(int index = 0; index < tweetedWords.size(); index++)
+		String [] boringWords = createIgnoredWordsArray();
+		
+		for(int index = 0; index <tweetedWords.size(); index++)
 		{
-			
+			for(int boringIndex = 0; boringIndex < boringWords.length; boringIndex++)
+			{
+				tweetedWords.remove(index);
+				index--;
+				boringIndex = boringWords.length;
+			}
 		}
 	}
 	
+	private void turnTweetsToWords()
+	{
+		for(Status currentTweet : allTheTweets)
+		{
+			String text = currentTweet.getText();
+			String [] tweetWords = text.split(" ");
+			for(String word : tweetWords)
+			{
+				tweetedWords.add(word);
+			}
+		}
+	}
+	
+	private void removeBlankWords()
+	{
+		for(int index = 0; index < tweetedWords.size(); index++)
+		{
+			if(tweetedWords.get(index).trim().equals(""))
+			{
+				tweetedWords.remove(index);
+				index--;
+			}
+		}
+	}
+	
+	private void gatherTheTweets(String user)
+	{
+		tweetedWords.clear();
+		allTheTweets.clear();
+		int pageCount = 1;
+		
+		Paging statusPage = new Paging(1, 200);
+		
+		while(pageCount <= 10)
+		{
+			try {
+				allTheTweets.addAll(twitterBot.getUserTimeline(user, statusPage));
+			} catch (TwitterException twitterError) {
+				baseController.handleErrors(twitterError);
+			}
+			pageCount++;
+		}
+	}
 	
 }
