@@ -127,6 +127,11 @@ public class ChatController
 	{
 		return baseFrame;
 	}
+	public String searchTwitter(String name){
+		String results = "The top word from user: " + name + " is: ";
+		results += tweetBot.getMostPopularWord(name);
+		return results;
+	}
 	
 	
 	

@@ -21,6 +21,7 @@ public class ChatPanel extends JPanel
 	private JButton hButton;
 	private JButton saveButton;
 	private JLabel chatLabel;
+	private JButton searchTwitterButton;
 	
 	public ChatPanel(ChatController baseController)
 	{
@@ -32,6 +33,8 @@ public class ChatPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, chatField, 283, SpringLayout.WEST, this);
 		
 		chatButton = new JButton("This one has words");
+		
+		searchTwitterButton = new JButton("Search twitter!");
 		
 		chatPane = new JScrollPane();
 		
@@ -80,7 +83,7 @@ public class ChatPanel extends JPanel
 		this.add(saveButton);
 		this.add(tButton);
 		this.add(chatPane);
-		
+		this.add(searchTwitterButton);
 		
 		
 	}
@@ -158,6 +161,15 @@ public class ChatPanel extends JPanel
 				String fileName = chatField.getText() + ".txt";
 				String saved = FileController.readFile(baseController, fileName);
 				chatDisplay.setText(saved);
+			}
+		});
+		
+		searchTwitterButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String username = chatField.getText();
+				chatDisplay.append(baseController.searchTwitter(userName);
 			}
 		});
 	}
