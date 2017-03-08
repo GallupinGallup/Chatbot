@@ -2,6 +2,7 @@ package chat.controller;
 
 
 import chat.view.ChatFrame;
+import chat.model.CTECTwitter;
 import chat.model.Chatbot;
 import chat.view.ChatViewer;
 public class ChatController 
@@ -11,11 +12,13 @@ public class ChatController
 	private Chatbot stupidBot;
 	private ChatViewer chatView;
 	private ChatFrame baseFrame;
+	private CTECTwitter tweetBot;
 	
 	
 	public ChatController()
 	{
 		stupidBot = new Chatbot("Italian");
+		tweetBot = new CTECTwitter(this);
 		chatView = new ChatViewer();
 		baseFrame = new ChatFrame(this);
 	}
@@ -84,8 +87,10 @@ public class ChatController
 			randomTopic = "Did you see the new _____ video?";
 			break;
 		case 1:
-		
-		
+			randomTopic = "Polotics are poop.";
+			break;
+		case 2:
+			
 		
 		
 		
@@ -93,6 +98,24 @@ public class ChatController
 		
 		return randomTopic;
 		
+	}
+	
+	public void handleErrors(Exception newException)
+	{
+		
+		chatView.displayMessage("An error has occured. Detailed results next.");
+		chatView.displayMessage(newException.getMessage());		
+		
+	}
+	
+	public void useTwitter(String text)
+	{
+		tweetBot.sendTweet(text);
+	}
+	
+	public ChatViewer getPopUp()
+	{
+		return chatView;
 	}
 	
 	public Chatbot getChatbot()

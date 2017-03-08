@@ -20,8 +20,8 @@ public class ChatFrame extends JFrame
 		{
 			this.setContentPane(basePanel);
 			this.setTitle("You got served sucker");
-			this.setSize(new Dimension(600, 400));
-			this.setResizable(false);
+			this.setSize(new Dimension(900, 900));
+			this.setResizable(true);
 			this.setVisible(true);
 			
 		}
