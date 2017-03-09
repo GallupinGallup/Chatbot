@@ -145,4 +145,34 @@ public class CTECTwitter
 		}
 	}
 	
+	private String calucalteTopWord()
+	{
+		String results = "" ;
+		String topWord = ";";
+		int mostPopularIndex = 0;
+		int popularCount = 0;
+		
+		
+		for (int index = 0; index< tweetedWords.size(); index++)
+		{
+			int currentPopularity = 0;
+			for (int searched = index + 1; searched < tweetedWords.size(); searched++)
+			{
+				if(tweetedWords.get(index).equalsIgnoreCase(tweetedWords.get(searched)))
+				{
+					currentPopularity++;
+				}
+				
+			}
+			if(currentPopularity > popularCount)
+			{
+				popularCount = currentPopularity;
+				mostPopularIndex = index;
+				topWord = tweetedWords.get(mostPopularIndex);
+			}
+		}
+		results += " the mo0st popular wors was " + topWord + ", and it occurend " + popularCount + " times.";
+		results += "\nThat means it has a percentage of " + ((double)popularCount)/tweetedWords.size() + "%";
+		return results;
+	}
 }
