@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import chat.controller.ChatController;
+import twitter4j.GeoLocation;
 import twitter4j.Paging;
+import twitter4j.Query;
+import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -51,6 +54,7 @@ public class CTECTwitter
 		Scanner boringWordScanner = new Scanner(this.getClass().getResourceAsStream("commonWords.txt"));
 		while(boringWordScanner.hasNextLine())
 		{
+			boringWordScanner.nextLine();
 			wordCount++;
 		}
 		boringWordScanner.close();
@@ -65,12 +69,7 @@ public class CTECTwitter
 		}
 		boringWordScanner.close();
 		
-		return null;
-	}
-	
-	private void collectTweets(String userName)
-	{
-		
+		return boringWords;
 	}
 	
 	public String getMostPopularWord(String userName)
@@ -81,7 +80,7 @@ public class CTECTwitter
 		this.removeBoringWords();
 		this.removeBlankWords();
 		
-		String information = "The tweetcount is " + allTheTweets.size() + "and the word count after removal is " + tweetedWords.size();
+		String information = "The tweetcount is " + allTheTweets.size() + "and the word count after removal is " + calucalteTopWord();
 		
 		return information;
 	}
@@ -171,8 +170,35 @@ public class CTECTwitter
 				topWord = tweetedWords.get(mostPopularIndex);
 			}
 		}
-		results += " the mo0st popular wors was " + topWord + ", and it occurend " + popularCount + " times.";
+		results += " the most popular wors was " + topWord + ", and it occurend " + popularCount + " times.";
 		results += "\nThat means it has a percentage of " + ((double)popularCount)/tweetedWords.size() + "%";
+		return results;
+	}
+	
+	
+	public String WDCSearch(String input)
+	{
+		
+		String results = "";
+		
+		Query query = new Query(input);
+		query.setCount(100);
+		query.setGeoCode(new GeoLocation(38.907192, -77.036871), 91, Query.MILES);
+		query.setSince("2016-10-8");
+		try
+		{
+			QueryResult result = twitterBot.search(query);
+			results += "Count : " + result.getTweets().size() + "\n";
+			for ( Status tweet : result.getTweets())
+			{
+				if(tweet.getText().contains("http") == false)
+				{
+				results += "@" + tweet.getUser().getName() + ": " + tweet.getText() + "\n"+ "\n"+ "\n"+ "\n";
+				}
+			}
+		}catch (TwitterException error){
+			baseController.handleErrors(error);
+		}
 		return results;
 	}
 }

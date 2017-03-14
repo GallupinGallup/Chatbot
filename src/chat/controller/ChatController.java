@@ -132,6 +132,11 @@ public class ChatController
 		results += tweetBot.getMostPopularWord(name);
 		return results;
 	}
+	public String WDCSearch(String input)
+	{
+		String results = tweetBot.WDCSearch(input);
+		return  results;
+	}
 	
 	
 	
